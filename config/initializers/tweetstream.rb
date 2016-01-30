@@ -1,4 +1,4 @@
-TWEETSTREAM = TweetStream.configure do |config|
+TweetStream.configure do |config|
   config.consumer_key       = ENV['TWITTER_CONSUMER_KEY']
   config.consumer_secret    = ENV['TWITTER_CONSUMER_SECRET']
   config.oauth_token        = ENV['TWITTER_ACCESS_TOKEN']
