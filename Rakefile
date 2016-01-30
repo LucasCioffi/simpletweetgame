@@ -5,12 +5,14 @@ require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
 
-namespace :tweetstream do
-  task :start => :environment do
-    puts "Tweetstream: starting"
-    TweetStream::Client.new.sample do |status|
-      Resque.enqueue(ProcessTweet, status)
-      render :text => "Tweet: #{status}"
-    end
+task "tweetstream:start" => :environment do
+  tweetclient = TweetStream::Client.new
+  puts "Tweetstream: starting"
+
+  tweetclient.userstream do |status|
+
+    puts "Tweet: #{status.text}"
+    puts "Status: #{status.to_s}"
+    Resque.enqueue(ProcessTweet, status)
   end
 end
