@@ -1,8 +1,7 @@
 class CreateTurns < ActiveRecord::Migration
   def change
     create_table :turns do |t|
-      t.string :user_id
-      t.string :integer
+      t.integer :user_id
       t.string :friend_username
       t.integer :board_id
       t.string :command

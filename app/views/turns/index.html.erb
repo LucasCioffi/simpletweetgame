@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>User</th>
-      <th>Integer</th>
       <th>Friend username</th>
       <th>Board</th>
       <th>Command</th>
@@ -20,7 +19,6 @@
     <% @turns.each do |turn| %>
       <tr>
         <td><%= turn.user_id %></td>
-        <td><%= turn.integer %></td>
         <td><%= turn.friend_username %></td>
         <td><%= turn.board_id %></td>
         <td><%= turn.command %></td>

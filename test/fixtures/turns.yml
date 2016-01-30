@@ -1,8 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: MyString
-  integer: MyString
+  user_id: 1
   friend_username: MyString
   board_id: 1
   command: MyString
@@ -10,8 +9,7 @@ one:
   ypos: 1
 
 two:
-  user_id: MyString
-  integer: MyString
+  user_id: 1
   friend_username: MyString
   board_id: 1
   command: MyString

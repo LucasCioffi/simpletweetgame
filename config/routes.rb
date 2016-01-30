@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :regions
-
   resources :turns
+
+  resources :regions
 
   resources :local_participation_records
 

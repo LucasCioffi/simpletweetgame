@@ -18,7 +18,7 @@ class TurnsControllerTest < ActionController::TestCase
 
   test "should create turn" do
     assert_difference('Turn.count') do
-      post :create, turn: { board_id: @turn.board_id, command: @turn.command, friend_username: @turn.friend_username, integer: @turn.integer, user_id: @turn.user_id, xpos: @turn.xpos, ypos: @turn.ypos }
+      post :create, turn: { board_id: @turn.board_id, command: @turn.command, friend_username: @turn.friend_username, user_id: @turn.user_id, xpos: @turn.xpos, ypos: @turn.ypos }
     end
 
     assert_redirected_to turn_path(assigns(:turn))
@@ -35,7 +35,7 @@ class TurnsControllerTest < ActionController::TestCase
   end
 
   test "should update turn" do
-    patch :update, id: @turn, turn: { board_id: @turn.board_id, command: @turn.command, friend_username: @turn.friend_username, integer: @turn.integer, user_id: @turn.user_id, xpos: @turn.xpos, ypos: @turn.ypos }
+    patch :update, id: @turn, turn: { board_id: @turn.board_id, command: @turn.command, friend_username: @turn.friend_username, user_id: @turn.user_id, xpos: @turn.xpos, ypos: @turn.ypos }
     assert_redirected_to turn_path(assigns(:turn))
   end
 
