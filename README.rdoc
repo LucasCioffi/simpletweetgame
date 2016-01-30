@@ -7,3 +7,46 @@ Move
   user
   friend
   direction
+
+### configuration
+
+for local development, there are `.env.dev` and `Procfile.dev` files ignored from git.
+these can contain secret tokens for environment vars. e.g. for twitter oauth.
+
+start with `foreman start -f Procfile.dev -e .env.dev`
+
+### running the tweetstream process
+
+add the following to `Procfile` or `Procfile.dev`:
+
+```
+bundle exec tweetstream_server: rake tweetstream:start
+```
+
+the tweetstream process runs an eventmachine server that manages the connection to Twitter's HTTP/2
+tweetstream API hook.  when it receives new records on the connection, it creates the appropriate jobs
+on Resque, which are then picked up by the workers in our Resque Pool.  this is really the simplest way
+to manage this work.
+
+### setting up resque
+
+install redis with `brew install redis`
+
+`resque-pool` allows you to more dynamically control resque worker processes on heroku
+similar to how unicorn manages web servers
+
+run `heroku config:set TERM_CHILD=1` to set up the right signal handling
+
+for heroku, add the following to the `Procfile`:
+
+```
+worker: bundle exec resque-pool
+```
+
+to run the resque pool in development:
+
+### resque jobs
+
+for now, there is one job, ProcessTweet, that handles all incoming tweets.
+the tweetstream process can do a limited amount of preprocessing to
+create multiple job types per type of tweet command.
