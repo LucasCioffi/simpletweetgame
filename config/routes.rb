@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :moves
+  resources :regions
+
+  resources :turns
+
+  resources :local_participation_records
 
   resources :boards
 

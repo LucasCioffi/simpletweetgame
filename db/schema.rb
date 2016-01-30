@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160130040651) do
+ActiveRecord::Schema.define(version: 20160130195330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,23 +19,52 @@ ActiveRecord::Schema.define(version: 20160130040651) do
   create_table "boards", force: :cascade do |t|
     t.string   "username"
     t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "description"
+    t.text     "rooms_positions"
+    t.string   "color"
+    t.string   "background_image_url"
+    t.integer  "height",               default: 100
+    t.integer  "width",                default: 100
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
-  create_table "moves", force: :cascade do |t|
-    t.string   "username"
+  create_table "local_participation_records", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "board_id"
+    t.integer  "num_moves"
+    t.integer  "num_invites"
+    t.integer  "xpos"
+    t.integer  "ypos"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.integer  "top_left_x"
+    t.integer  "top_left_y"
+    t.integer  "height"
+    t.integer  "width"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "turns", force: :cascade do |t|
+    t.string   "user_id"
+    t.string   "integer"
     t.string   "friend_username"
-    t.string   "board_id",        default: "0"
-    t.string   "direction"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.integer  "board_id"
+    t.string   "command"
+    t.integer  "xpos"
+    t.integer  "ypos"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
-    t.integer  "xpos"
-    t.integer  "ypos"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

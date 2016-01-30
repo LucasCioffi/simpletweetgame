@@ -11,6 +11,9 @@ class BoardsController < ApplicationController
   # GET /boards/1.json
   def show
     @moves = Move.where(board_id: @board.id)
+    @margin = 2
+    @room_width = 40
+    @room_height = 40
   end
 
   # GET /boards/new
@@ -74,6 +77,6 @@ class BoardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def board_params
-      params.require(:board).permit(:username, :title)
+      params.require(:board).permit(:username, :title, :description, :rooms_positions, :color, :background_image_url)
     end
 end

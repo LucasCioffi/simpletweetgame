@@ -18,7 +18,7 @@ class BoardsControllerTest < ActionController::TestCase
 
   test "should create board" do
     assert_difference('Board.count') do
-      post :create, board: { title: @board.title, username: @board.username }
+      post :create, board: { background_image_url: @board.background_image_url, color: @board.color, description: @board.description, rooms_positions: @board.rooms_positions, title: @board.title, username: @board.username }
     end
 
     assert_redirected_to board_path(assigns(:board))
@@ -35,7 +35,7 @@ class BoardsControllerTest < ActionController::TestCase
   end
 
   test "should update board" do
-    patch :update, id: @board, board: { title: @board.title, username: @board.username }
+    patch :update, id: @board, board: { background_image_url: @board.background_image_url, color: @board.color, description: @board.description, rooms_positions: @board.rooms_positions, title: @board.title, username: @board.username }
     assert_redirected_to board_path(assigns(:board))
   end
 
