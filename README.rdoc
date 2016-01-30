@@ -1,0 +1,9 @@
+User
+  username
+  xpos
+  ypos
+
+Move
+  user
+  friend
+  direction
