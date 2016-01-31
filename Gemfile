@@ -13,6 +13,8 @@ gem "twitter-bootstrap-rails"
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 gem "react-rails", "~> 1.5.0"
+gem "sprockets-es6"
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
