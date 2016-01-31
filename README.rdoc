@@ -39,10 +39,10 @@ similar to how unicorn manages web servers
 run `heroku config:set TERM_CHILD=1 WORKER_CONCURRENCY=5` to set up the right signal handling and configure the
 default number of workers.
 
-for heroku, add the following to the `Procfile`:
+for heroku, add the following to your `Procfile.dev`:
 
 ```
-worker: bundle exec resque-pool
+worker: bundle exec resque-pool --environment development
 ```
 
 to run the resque pool in development:
