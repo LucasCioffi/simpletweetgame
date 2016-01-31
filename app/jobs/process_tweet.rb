@@ -10,11 +10,11 @@ module ProcessTweet
     board = Board.first
     participation_record = find_most_recent_participation_record(user, board)
 
-    if participation_record
-      process_turn(user, participation_record, status)
-    else
-      user.local_participation_records.create!(board: board, xpos: board.width / 2, ypos: board.height / 2, num_moves: 0, num_invites: 0)
+    unless participation_record
+      participation_record = user.local_participation_records.create!(board: board, xpos: board.width / 2, ypos: board.height / 2, num_moves: 0, num_invites: 0)
     end
+
+    process_turn(user, participation_record, status)
   end
 
   private
