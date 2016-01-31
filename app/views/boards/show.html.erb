@@ -27,8 +27,13 @@
         <%= "#{m.username} #{m.friend_username} #{m.direction}" %><br>
       <% end %>
       <% if @turns == [] %>
-        None yet.
+        None yet.<br>
       <% end %>
+      <br>
+      <i class="fa fa-arrow-circle-up fa-lg move-player" onClick="movePlayer('up');"></i>
+      <i class="fa fa-arrow-circle-down fa-lg move-player" onClick="movePlayer('down');"></i><br>
+      <i class="fa fa-arrow-circle-left fa-lg move-player" onClick="movePlayer('left');"></i>
+      <i class="fa fa-arrow-circle-right fa-lg move-player" onClick="movePlayer('right');"></i>
     </div>
   </div>
   <% (@board.height).times.with_index do |height| %>
@@ -599,5 +604,39 @@
     window.scrollTo((<%= board_width %>-window.innerWidth)/2,(<%= board_height %>-window.innerHeight)/2);
     $("#board").scrollLeft((<%= board_width %>-window.innerWidth)/2);
   });
+
+  var addPlayer;
+  addPlayer = function(command) {
+    var position;
+    position = $('#player1').offset();
+    $('#player1').offset({top: window.height/2, left: window.width/2});
+    return
+  };
+
+  var movePlayer;
+  movePlayer = function(command) {
+    var position, room_height, room_width;
+    position = $('#player1').offset();
+    room_height = 40;
+    room_width = 40;
+    if (command == 'up') {
+      console.log('up');
+      $('#player1').offset({top: position.top - room_height});
+    }
+    else if (command == 'down') {
+      console.log('down');
+      $('#player1').offset({top: position.top + room_height});
+    }
+    else if (command == 'right') {
+      console.log('right');
+      $('#player1').offset({left: position.left + room_width});
+    }
+    else if (command == 'left') {
+      console.log('left');
+      $('#player1').offset({right: position.left - room_width});
+    }
+    console.log($('#player1').offset());
+    return
+  };
 </script>
 <%= react_component("NewPlayer") %>

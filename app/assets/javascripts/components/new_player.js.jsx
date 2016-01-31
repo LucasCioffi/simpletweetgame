@@ -1,9 +1,10 @@
 var NewPlayer = React.createClass({
+  onClick: function (event){
+  },
   render: function () {
     return (
       <div>
-        <h1>Hello, World!</h1>
-        <i className="fa fa-user fa-lg player-icon"></i>
+        <i id="player1" className="fa fa-user fa-lg player-icon" onClick={this.onClick}></i>
       </div>
     );
   }

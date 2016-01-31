@@ -14,7 +14,7 @@ for local development, there are `.env.dev` and `Procfile.dev` files ignored fro
 these can contain secret tokens for environment vars. e.g. for twitter oauth.  `Procfile.dev.example` and
 `.env.dev.example` contain an examples.
 
-start with `foreman start -f Procfile.dev -e .env.dev`
+start with `foreman start -f Procfile.dev -e .env.dev` and your application will run on http://localhost:5000/
 
 ### running the tweetstream process
 
@@ -52,3 +52,7 @@ to run the resque pool in development:
 for now, there is one job, ProcessTweet, that handles all incoming tweets.
 the tweetstream process can do a limited amount of preprocessing to
 create multiple job types per type of tweet command.
+
+RESOURCES
+http://blog.bigbinary.com/2015/07/19/using-reactjs-with-rails-actioncable.html
+https://github.com/websocket-rails/websocket-rails/wiki/Multiple-Servers-and-Background-Jobs
