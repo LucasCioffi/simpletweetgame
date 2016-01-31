@@ -10,7 +10,7 @@ class BoardsController < ApplicationController
   # GET /boards/1
   # GET /boards/1.json
   def show
-    @moves = Move.where(board_id: @board.id)
+    @turns = Turn.where(board_id: @board.id)
     @margin = 2
     @room_width = 40
     @room_height = 40
