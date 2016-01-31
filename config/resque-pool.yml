@@ -1,2 +1,2 @@
 ---
-'*': <%= WORKER_CONCURRENCY %>
+'*': <%= ENV.fetch('WORKER_CONCURRENCY', 5) %>
