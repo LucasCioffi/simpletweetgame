@@ -7,8 +7,9 @@ class CreateUserService
 
   def execute
     tweet_user = tweet['user']
-    username = tweet_user['screen_name']
-    user = User.create!(username: username)
+    twitter_name = tweet_user['name']
+    twitter_user_id = tweet_user['screen_name']
+    User.create!(username: twitter_name, twitter_user_id: twitter_user_id)
   end
 
 end

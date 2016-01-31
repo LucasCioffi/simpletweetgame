@@ -3,8 +3,8 @@ module ProcessTweet
 
   def self.perform(status)
     status_user = status['user']
-    screen_name = status_user['screen_name']
-    user = User.find_by_username(screen_name)
+    twitter_user_id = status_user['screen_name']
+    user = User.find_by_twitter_user_id(twitter_user_id)
 
     user = init_new_user(status) unless user
     board = Board.first
