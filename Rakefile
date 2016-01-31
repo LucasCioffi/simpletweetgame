@@ -10,9 +10,7 @@ task "tweetstream:start" => :environment do
   puts "Tweetstream: starting"
 
   tweetclient.userstream do |status|
-
-    puts "Tweet: #{status.text}"
-    puts "Status: #{status.to_s}"
+    puts '@' + status.user.screen_name + ': ' + status.text
     Resque.enqueue(ProcessTweet, status)
   end
 end
