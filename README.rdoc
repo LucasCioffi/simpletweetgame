@@ -11,7 +11,8 @@ Move
 ### configuration
 
 for local development, there are `.env.dev` and `Procfile.dev` files ignored from git.
-these can contain secret tokens for environment vars. e.g. for twitter oauth.
+these can contain secret tokens for environment vars. e.g. for twitter oauth.  `Procfile.dev.example` and
+`.env.dev.example` contain an examples.
 
 start with `foreman start -f Procfile.dev -e .env.dev`
 
@@ -35,7 +36,8 @@ install redis with `brew install redis`
 `resque-pool` allows you to more dynamically control resque worker processes on heroku
 similar to how unicorn manages web servers
 
-run `heroku config:set TERM_CHILD=1` to set up the right signal handling
+run `heroku config:set TERM_CHILD=1 WORKER_CONCURRENCY=5` to set up the right signal handling and configure the
+default number of workers.
 
 for heroku, add the following to the `Procfile`:
 
