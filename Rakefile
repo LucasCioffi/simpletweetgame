@@ -14,3 +14,14 @@ task "tweetstream:start" => :environment do
     Resque.enqueue(ProcessTweet, status)
   end
 end
+
+require 'rake/testtask'
+
+# unit tests
+Rake::TestTask.new(:spec) do |t|
+  t.libs << "spec"
+  t.test_files = FileList['spec/**/*_spec.rb']
+  t.verbose = true
+end
+
+task :default => :spec
