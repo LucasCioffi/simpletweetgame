@@ -24,7 +24,7 @@
     <span class="heading">Recent Moves:</span><br>
     <div class="smaller_text">
       <% @turns.each do |m| %>
-        <%= "#{m.username} #{m.friend_username} #{m.direction}" %><br>
+        <%= "#{m.user.username} #{m.friend_username} #{m.command}" %><br>
       <% end %>
       <% if @turns == [] %>
         None yet.<br>
