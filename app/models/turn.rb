@@ -3,6 +3,8 @@ class Turn < ActiveRecord::Base
   belongs_to :board
   belongs_to :local_participation_record
 
+  attr_accessor :command
+
   def parse_command!
     cmd_name, cmd_args = message.split(/\s/, 2)
 
@@ -11,30 +13,28 @@ class Turn < ActiveRecord::Base
       else invalid_command(cmd_args)
     end
 
-    # raise cmd_name.inspect
-    # raise self.inspect
     save!
   end
 
   private
 
   def move_user(user, participation_record, *args)
-    @command = 'go'
+    self.command = 'go'
     newx, newy = [participation_record.xpos, participation_record.ypos]
     cmd_args = args
     if cmd_args.length > 0
       case cmd_args.first.downcase
         when 'up' then
-          @command += ' left'
+          self.command += ' left'
           newy = newy - 1
         when 'right' then
-          @command += ' right'
+          self.command += ' right'
           newx = newx + 1
         when 'down' then
-          @command += ' down'
+          self.command += ' down'
           newy = newy + 1
         when 'left' then
-          @command += ' left'
+          self.command += ' left'
           newx = newx - 1
       end
     end
@@ -48,6 +48,6 @@ class Turn < ActiveRecord::Base
   end
 
   def invalid_command(*args)
-    @command = 'invalid'
+    self.command = 'invalid'
   end
 end
