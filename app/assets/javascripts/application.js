@@ -12,9 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require action_cable
 //= require twitter/bootstrap
 //= require turbolinks
 //= require react
 //= require react_ujs
 //= require components
 //= require_tree .
+
+@App = {}
+App.cable = ActionCable.createConsumer()
