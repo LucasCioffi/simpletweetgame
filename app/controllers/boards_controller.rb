@@ -10,7 +10,7 @@ class BoardsController < ApplicationController
   # GET /boards/1
   # GET /boards/1.json
   def show
-    @turns = Turn.where(board_id: @board.id)
+    @turns = Turn.where(board_id: @board.id).order("created_at DESC")
     @lprs = LocalParticipationRecord.where(board_id: @board.id).where("updated_at > ?",Time.now - 1.hours)
     begin
       @creator = User.find_by_id!(@board.user_id).username
