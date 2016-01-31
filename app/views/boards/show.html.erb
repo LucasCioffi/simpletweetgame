@@ -1,40 +1,46 @@
-<!-- Fixed navbar -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
-    <div id="navbar" class="navbar-collapse collapse" style="color:white;">
-      <ul class="nav navbar-nav">
-        <li class="active" style="position:relative; top:8px; padding-right:20px;">
-          <strong><%= @board.title %></strong><br>
-          Created by <%= @board.username %>.
-        </li>
-        <li class="active"><a href="#">Rules</a></li>
-        <li class="active"><a href="#">About</a></li>
-      </ul>
-    </div><!--/.nav-collapse -->
+  <div id="navbar" class="navbar-collapse collapse" style="color:white;">
+    <ul class="nav navbar-nav">
+      <li class="active" style="position:relative; top:8px; padding-left:20px;">
+        <strong><%= @board.title %></strong><br>
+        <span class="smaller_text">Created by <%= @creator %>.</span>
+      </li>
+    </ul>
+    <div style="text-align:right; position:relative; left:-10px; top:10px;">
+      <button type="button" class="btn btn-sm btn-info header_option" data-section="more_info">How to Play</button>
+    </div>
+  </div><br>
+  <div id="more_info_section" class="header_option_container">
+    <i class="fa fa-close fa-lg close_header_option_container"></i>
+    <span class="heading">How To Play</span><br>
+    SimpleTweet Game is a fun way to connect with friends and make new ones.
   </div>
 </nav>
 <br><br><br>
-<div style="background-color:red; float:left; width:20%;">
-  Recent Moves:<br>
-  <% @moves.each do |m| %>
-    <%= "#{m.username} #{m.friend_username} #{m.direction}" %><br>
+<% board_height = @board.height * (@room_height + @margin*2) + 25 %>
+<% board_width = @board.width * (@room_width + @margin*2) %>
+<div id="board" style="height:<%= board_height %>px; width:<%= board_width %>px; background-color:rgb(210, 59, 115);">
+  <div style="background-color:white; position:fixed; float:left; width:20%; padding:20px;">
+    <span class="heading">Recent Moves:</span><br>
+    <div class="smaller_text">
+      <% @turns.each do |m| %>
+        <%= "#{m.username} #{m.friend_username} #{m.direction}" %><br>
+      <% end %>
+      <% if @turns == [] %>
+        None yet.
+      <% end %>
+    </div>
+  </div>
+  <% (@board.height).times.with_index do |height| %>
+    <% (@board.width).times.with_index do |width| %>
+      <div class="room" style="width:<%= @room_width %>px; height:<%= @room_height %>px; margin:<%= @margin %>px;">
+        <%= "#{width}-#{height}" %>
+      </div>
+    <% end %>
+    <div style="float:clear;"></div><br>
   <% end %>
 </div>
 
-<div style="background-color:yellow; height:100%; width:100%; overflow:scroll;">
-  <% board_height = @board.height * (@room_height + @margin*2) %>
-  <% board_width = @board.width * (@room_width + @margin*2) %>
-  <div style="height:<%= board_height %>px; width:<%= @board.width * (@room_width + @margin*2) %>px;">
-    <% (@board.width).times.with_index do |width| %>
-      <% (@board.height).times.with_index do |height| %>
-        <div style="width:<%= @room_width %>px; height:<%= @room_height %>px; margin:<%= @margin %>px; border:1px solid black; float:left; display: flex; flex-direction: column; justify-content: center; text-align:center;">
-          <%= "#{width}-#{height}" %>
-        </div>
-      <% end %>
-      <div style="float:clear;"></div><br>
-    <% end %>
-  </div>
-</div>
 <% if false %>
   <div class="container theme-showcase" role="main">
 
@@ -590,6 +596,8 @@
 </div>
 <script>
   $(document).ready(function() {
-  	    // window.scrollTo((<%= board_width %>-window.innerWidth)/2,(<%= board_height %>-window.innerHeight)/2);
-  	});
+    window.scrollTo((<%= board_width %>-window.innerWidth)/2,(<%= board_height %>-window.innerHeight)/2);
+    $("#board").scrollLeft((<%= board_width %>-window.innerWidth)/2);
+  });
 </script>
+<%= react_component("NewPlayer") %>
