@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160130200657) do
+ActiveRecord::Schema.define(version: 20160130205258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "boards", force: :cascade do |t|
-    t.string   "username"
     t.string   "title"
     t.text     "description"
     t.text     "rooms_positions"
@@ -27,6 +26,7 @@ ActiveRecord::Schema.define(version: 20160130200657) do
     t.integer  "width",                default: 100
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+    t.integer  "user_id"
   end
 
   create_table "local_participation_records", force: :cascade do |t|

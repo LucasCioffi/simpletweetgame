@@ -5,4 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Board.create(id: 0, title: "The Universe Board", username: "The SimpleTweetGame Team")
+User.create(id: 0, username: "The SimpleTweetGame Team")
+Board.create(id: 0, title: "The Universe Board", user_id: 0)

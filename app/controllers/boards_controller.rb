@@ -11,6 +11,12 @@ class BoardsController < ApplicationController
   # GET /boards/1.json
   def show
     @turns = Turn.where(board_id: @board.id)
+    @lprs = LocalParticipationRecord.where(board_id: @board.id).where("updated_at > ?",Time.now - 1.hours)
+    begin
+      @creator = User.find_by_id!(@board.user_id).username
+    rescue ActiveRecord::RecordNotFound
+      @creator = "Anonymous"
+    end
     @margin = 2
     @room_width = 40
     @room_height = 40
@@ -77,6 +83,6 @@ class BoardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def board_params
-      params.require(:board).permit(:username, :title, :description, :rooms_positions, :color, :background_image_url)
+      params.require(:board).permit(:user_id, :title, :description, :rooms_positions, :color, :background_image_url, :height, :width)
     end
 end
