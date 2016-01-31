@@ -66,8 +66,10 @@ ActiveRecord::Schema.define(version: 20160131064617) do
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.text     "profile_photo_url"
+    t.string   "twitter_user_id"
   end
 
 end
