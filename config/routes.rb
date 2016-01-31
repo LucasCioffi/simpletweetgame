@@ -1,4 +1,7 @@
+require 'resque_web'
+
 Rails.application.routes.draw do
+
   resources :turns
 
   resources :regions
@@ -15,6 +18,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'boards#show'
 
+  mount ResqueWeb::Engine => '/resque_web'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

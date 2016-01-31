@@ -34,6 +34,10 @@ gem 'rails_12factor'
 gem 'resque'
 gem 'resque-pool'
 
+# group :development do
+  gem 'resque-web', require: 'resque_web'
+# end
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
