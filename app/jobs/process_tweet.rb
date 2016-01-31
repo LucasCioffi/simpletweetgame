@@ -32,7 +32,7 @@ module ProcessTweet
 
   def self.process_turn(user, participation_record, status)
     msg = status['text'].strip
-    turn = Turn.create(user: user, board: participation_record.board, message: msg)
+    turn = Turn.create(user: user, board: participation_record.board, local_participation_record: participation_record, message: msg)
     turn.parse_command!
   end
 end
