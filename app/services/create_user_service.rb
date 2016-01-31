@@ -1,5 +1,4 @@
 class CreateUserService
-
   attr_accessor :tweet
 
   def initialize(tweet)
@@ -7,7 +6,9 @@ class CreateUserService
   end
 
   def execute
-    # tweet.
-    # user = User.find_by_username(tweet.username)
+    tweet_user = tweet['user']
+    username = tweet_user['screen_name']
+    user = User.create!(username: username)
   end
+
 end
