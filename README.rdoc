@@ -53,6 +53,13 @@ for now, there is one job, ProcessTweet, that handles all incoming tweets.
 the tweetstream process can do a limited amount of preprocessing to
 create multiple job types per type of tweet command.
 
+Instead of sending tweets, a ProcessTweet job can be created through the console, with a status object attached to it.
+The status object needs to be formatted as a Twitter API response.
+
+```ruby
+Resque.enqueue(ProcessTweet, {user: {screen_name: 'simpletest10'}, text: "go left @simpleTwitterGame"})
+```
+
 RESOURCES
 http://blog.bigbinary.com/2015/07/19/using-reactjs-with-rails-actioncable.html
 https://github.com/websocket-rails/websocket-rails/wiki/Multiple-Servers-and-Background-Jobs
